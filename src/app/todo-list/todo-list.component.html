@@ -1,3 +1,6 @@
+<ul>
   <app-single-todo
-    *ngFor='let todo of todos'
-    [todoItem]='todo'></app-single-todo>
+    *ngFor='let todo of todos; let i = index'
+    [todoItem]='todo'
+    [id]='i'></app-single-todo>
+</ul>
