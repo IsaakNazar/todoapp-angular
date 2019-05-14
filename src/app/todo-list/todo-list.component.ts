@@ -16,7 +16,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.todos = this.todoService.getTodoList();
+    this.todos = this.todoService.getTodoList();
     this.todoService.subject.subscribe(
       value => {
         this.todos = value;
@@ -26,4 +26,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  deleteAll() {
+    this.todoService.deleteAllTodos();
+  }
+
 }

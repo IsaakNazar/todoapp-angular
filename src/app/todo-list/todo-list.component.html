@@ -1,6 +1,7 @@
 <ul>
   <app-single-todo
-    *ngFor='let todo of todos; let i = index'
-    [todoItem]='todo'
-    [id]='i'></app-single-todo>
+    *ngFor="let todo of todos; let i = index"
+    [todoItem]="todo"
+    [id]="i"></app-single-todo>
 </ul>
+<button (click)="deleteAll()">delete all</button>
