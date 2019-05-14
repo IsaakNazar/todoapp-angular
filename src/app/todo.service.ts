@@ -12,19 +12,21 @@ export class TodoService {
   }
 
   getTodoListRequest() {
-    return this.configService.getConfig();
+    return this.configService.getConfig().subscribe(todos => {
+      this.todoList = todos;
+    });
   }
 
   addTodoList(value) {
-
+    // this.getTodoListRequest();
+    // console.log(this.todoList);
     this.todoList.push(value);
     this.subject.next(this.todoList);
   }
 
   getTodoList() {
-    return this.getTodoListRequest().subscribe(todos => {
-      this.todoList = todos;
-    });
+    this.getTodoListRequest();
+    return this.todoList;
   }
 
   deleteTodo(id: number) {
