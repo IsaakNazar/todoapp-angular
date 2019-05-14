@@ -10,6 +10,8 @@ import { SingleTodoComponent } from './todo-list/single-todo/single-todo.compone
 import { PopupConfirmComponent } from './popup-confirm/popup-confirm.component';
 import {FormsModule} from '@angular/forms';
 import {TodoService} from './todo.service';
+import {HttpClientModule} from '@angular/common/http';
+import {ConfigService} from './config.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,10 @@ import {TodoService} from './todo.service';
   imports: [
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [TodoService],
+  providers: [TodoService, ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
