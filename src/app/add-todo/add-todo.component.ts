@@ -15,12 +15,14 @@ export class AddTodoComponent implements OnInit {
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
-    console.log(this.inputForm);
   }
 
   onSubmit() {
-    this.todoService.addTodoList(this.inputForm.value.input_text);
-    this.inputForm.form.patchValue({input_text: ''});
+    // this.todoService.addTodoList(this.inputForm.value.input_text);
+    // this.inputForm.form.patchValue({input_text: ''});
+
+    this.todoService.addTodoList(this.inputForm.value.input_text)
+      .subscribe();
   }
 
 }
