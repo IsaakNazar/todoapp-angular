@@ -11,7 +11,6 @@ import { PopupConfirmComponent } from './popup-confirm/popup-confirm.component';
 import {FormsModule} from '@angular/forms';
 import {TodoService} from './todo.service';
 import {HttpClientModule} from '@angular/common/http';
-import {ConfigService} from './config.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import {ConfigService} from './config.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [TodoService, ConfigService],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
