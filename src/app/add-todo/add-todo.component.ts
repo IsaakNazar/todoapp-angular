@@ -18,9 +18,6 @@ export class AddTodoComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.todoService.addTodoList(this.inputForm.value.input_text);
-    // this.inputForm.form.patchValue({input_text: ''});
-
     this.todoService.addTodoList(this.inputForm.value.input_text)
       .subscribe();
   }
