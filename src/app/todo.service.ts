@@ -1,11 +1,13 @@
-import {Subject, throwError} from 'rxjs';
+import {Observable, Subject, throwError} from 'rxjs';
 import {Injectable} from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 
 @Injectable()
 export class TodoService {
 
+  datas: Observable<any[]>;
   subject = new Subject();
   todoList;
   url = 'http://localhost:4444';
@@ -15,7 +17,8 @@ export class TodoService {
     })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public db: AngularFirestore) {
+    this.datas = this.db.collection('datas').valueChanges();
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -35,11 +38,6 @@ export class TodoService {
   }
 
   addTodoList(value) {
-    // this.getTodoListRequest();
-    // console.log(this.todoList);
-    // console.log(this.todoList);
-    // this.todoList.push(value);
-    // this.subject.next(this.todoList);
     return this.http.post(
       `${this.url}/todos`,
       { 'name': value },
@@ -49,6 +47,10 @@ export class TodoService {
 
   getTodoList() {
     return this.http.get(`${this.url}/todos`);
+  }
+
+  getFirebase() {
+    return this.datas;
   }
 
   deleteTodo(id: number) {
