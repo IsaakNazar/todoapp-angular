@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TodoService} from '../todo.service';
 
 @Component({
@@ -6,24 +6,21 @@ import {TodoService} from '../todo.service';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit, OnDestroy {
+export class TodoListComponent implements OnInit {
 
   todos;
+  fire;
   // private subscription: Subscription;
 
   constructor(private todoService: TodoService) {
   }
 
   ngOnInit() {
-    this.todoService.getTodoList().subscribe(resp => {
+    this.todoService.getFirebase().subscribe(resp => {
       this.todos = resp;
     });
-  }
 
-  ngOnDestroy() {
-    // this.subscription.unsubscribe();
   }
-
 
   deleteAll() {
     this.todoService.deleteAllTodos();

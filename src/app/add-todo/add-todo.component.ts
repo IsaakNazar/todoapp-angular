@@ -17,10 +17,8 @@ export class AddTodoComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
-    // this.todoService.addTodoList(this.inputForm.value.input_text);
-    // this.inputForm.form.patchValue({input_text: ''});
-
+  onSubmit(e: Event) {
+    e.preventDefault();
     this.todoService.addTodoList(this.inputForm.value.input_text)
       .subscribe();
   }
