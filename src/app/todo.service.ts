@@ -3,11 +3,13 @@ import {Injectable} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
+import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 
 @Injectable()
 export class TodoService {
 
-  datas: Observable<any[]>;
+  // datas: Observable<any[]>;
+  datas: AngularFireList<any>;
   subject = new Subject();
   todoList;
   url = 'http://localhost:4444';
@@ -17,8 +19,27 @@ export class TodoService {
     })
   };
 
-  constructor(private http: HttpClient, public db: AngularFirestore) {
-    this.datas = this.db.collection('datas').valueChanges();
+  constructor(public db: AngularFireDatabase) {
+    this.datas = db.list('todos');
+  }
+
+  addTodoList(value) {
+    this.datas.push({name: value});
+  }
+
+  getTodoList() {
+    return this.datas;
+  }
+
+  deleteTodo(id) {
+    // this.todoList.splice(id, 1);
+    console.log('id', id);
+    // this.datas.remove(id);
+  }
+
+  deleteAllTodos() {
+    this.todoList = [];
+    this.subject.next(this.todoList);
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -35,31 +56,6 @@ export class TodoService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  }
-
-  addTodoList(value) {
-    return this.http.post(
-      `${this.url}/todos`,
-      { 'name': value },
-      this.httpOptions)
-      .pipe(catchError(this.handleError));
-  }
-
-  getTodoList() {
-    return this.http.get(`${this.url}/todos`);
-  }
-
-  getFirebase() {
-    return this.datas;
-  }
-
-  deleteTodo(id: number) {
-    this.todoList.splice(id, 1);
-  }
-
-  deleteAllTodos() {
-    this.todoList = [];
-    this.subject.next(this.todoList);
   }
 
 }

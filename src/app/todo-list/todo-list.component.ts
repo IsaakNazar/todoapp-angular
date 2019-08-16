@@ -9,17 +9,16 @@ import {TodoService} from '../todo.service';
 export class TodoListComponent implements OnInit {
 
   todos;
-  fire;
-  // private subscription: Subscription;
 
   constructor(private todoService: TodoService) {
   }
 
   ngOnInit() {
-    this.todoService.getFirebase().subscribe(resp => {
-      this.todos = resp;
+   this.todos = this.todoService.getTodoList().valueChanges();
+    // this.todoService.getTodoList().subscribe(x => console.log(x));
+    this.todoService.getTodoList().valueChanges().subscribe(x => {
+      console.log(x);
     });
-
   }
 
   deleteAll() {

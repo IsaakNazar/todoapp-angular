@@ -15,7 +15,7 @@ export class SingleTodoComponent implements OnInit {
   ngOnInit() {
   }
 
-  removeTodo(itemToRemove: number) {
+  removeTodo(itemToRemove) {
     this.todoService.deleteTodo(itemToRemove);
   }
 
