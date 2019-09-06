@@ -41,19 +41,18 @@ app.post('/api/todos', (req, res) => {
       .then(createdTodo => {
         res.status(201).json({
           message: 'Todo created successfully',
-          todos: createdTodo
+          todoId: createdTodo._id
         })
       })
       .catch(res.status(500))
 });
 
 app.delete('/api/todos/:id', (req, res) => {
-  Todo.deleteOne({_id: req.params.id})
-      .then(itemToDelete => {
-        res.status(200).json({
-          message: 'Todo Deleted successfully'
-        });
-      });
+  Todo.deleteOne({_id: req.params.id}).then(result => {
+    res.status(200).json({
+      message: 'Todo Deleted successfully'
+    });
+  });
 });
 
 app.listen(port, () => console.log(`Server has started on port ${port}`));
