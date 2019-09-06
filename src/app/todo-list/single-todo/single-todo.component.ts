@@ -8,7 +8,6 @@ import {TodoService} from '../../todo.service';
 })
 export class SingleTodoComponent implements OnInit {
   @Input() todoItem;
-  @Input() id: number;
 
   constructor(private todoService: TodoService) { }
 
@@ -16,7 +15,9 @@ export class SingleTodoComponent implements OnInit {
   }
 
   removeTodo(itemToRemove) {
-    this.todoService.deleteTodo(itemToRemove);
+    if (confirm('Do you want to remove this todo?')) {
+      this.todoService.deleteTodo(itemToRemove);
+    }
   }
 
 }

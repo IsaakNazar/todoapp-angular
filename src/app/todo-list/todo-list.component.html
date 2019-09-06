@@ -1,6 +1,5 @@
 <ul>
   <app-single-todo
-    *ngFor="let todo of todos | async"
+    *ngFor="let todo of todos"
     [todoItem]="todo"></app-single-todo>
 </ul>
-<button (click)="deleteAll()">delete all</button>

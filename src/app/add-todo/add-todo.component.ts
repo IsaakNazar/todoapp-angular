@@ -11,7 +11,6 @@ import {NgForm} from '@angular/forms';
 export class AddTodoComponent implements OnInit {
   @ViewChild('f') inputForm: NgForm;
 
-
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
@@ -21,9 +20,6 @@ export class AddTodoComponent implements OnInit {
     e.preventDefault();
     this.todoService.addTodoList(this.inputForm.value.input_text);
     this.inputForm.reset();
-    // this.inputForm.value = '';
-
-    console.log(this.inputForm);
   }
 
 }
