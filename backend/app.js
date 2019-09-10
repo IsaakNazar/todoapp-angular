@@ -48,7 +48,7 @@ app.post('/api/todos', (req, res) => {
 });
 
 app.delete('/api/todos/:id', (req, res) => {
-  Todo.deleteOne({_id: req.params.id}).then(result => {
+  Todo.deleteOne({_id: req.params.id}).then(() => {
     res.status(200).json({
       message: 'Todo Deleted successfully'
     });
