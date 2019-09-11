@@ -14,7 +14,7 @@ export class TodoService {
   }
 
   addTodoList(name: string) {
-    const todos: TodoModel = {id: null, name: name};
+    const todos: TodoModel = {id: null, name: name, isCompleted: false};
     this.http.post<{message: string, todoId: string}>('http://localhost:3000/api/todos', todos)
       .subscribe(resp => {
         todos.id = resp.todoId;

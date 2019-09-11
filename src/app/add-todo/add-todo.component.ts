@@ -1,7 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TodoService} from '../todo.service';
-import {NgForm} from '@angular/forms';
-
 
 @Component({
   selector: 'app-add-todo',
@@ -9,7 +7,7 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./add-todo.component.scss']
 })
 export class AddTodoComponent implements OnInit {
-  @ViewChild('f') inputForm: NgForm;
+  inputText = '';
 
   constructor(private todoService: TodoService) { }
 
@@ -18,8 +16,10 @@ export class AddTodoComponent implements OnInit {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    this.todoService.addTodoList(this.inputForm.value.input_text);
-    this.inputForm.reset();
+    if (this.inputText) {
+      this.todoService.addTodoList(this.inputText);
+      this.inputText = '';
+    }
   }
 
 }

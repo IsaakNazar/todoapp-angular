@@ -20,4 +20,8 @@ export class SingleTodoComponent implements OnInit {
     }
   }
 
+  toggleCheckbox(itemToToggle) {
+    console.log(itemToToggle);
+  }
+
 }

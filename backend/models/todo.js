@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const server = 'sandbox-0rmzk.mongodb.net';
-const user = 'user_001';
+const server   = 'sandbox-0rmzk.mongodb.net';
+const user     = 'user_001';
 const database = 'todo';
 const password = 'VVFkTptXZ68s5LWw';
 
@@ -16,7 +16,8 @@ mongoose.connect(uri, {useNewUrlParser: true})
         });
 
 let TodoSchema = new mongoose.Schema({
-  name: { type: String, required: true }
+  name:        {type: String, required: true},
+  isCompleted: Boolean
 });
 
 module.exports = mongoose.model('Todo', TodoSchema);

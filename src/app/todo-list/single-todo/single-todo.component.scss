@@ -1,0 +1,45 @@
+li {
+  padding:       10px;
+  background:    white;
+  margin:        5px 0;
+  border-radius: 3px;
+  font-size:     17px;
+  font-weight:   500;
+  color:         #5c5c5c;
+  
+  &:hover {
+    .fa-trash-alt {
+      visibility: visible;
+      color:      #ebbdbd;
+      opacity:    1;
+    }
+  }
+}
+
+.remove_item {
+  float: right;
+  
+  .fa-trash-alt {
+    visibility: hidden;
+    opacity:    0;
+    transition: visibility 0s, opacity 0.4s linear;
+    
+    &:hover {
+      color:      indianred;
+      transition: color ease-in-out .1s;
+      cursor:     pointer;
+    }
+  }
+}
+
+.check_item {
+  margin-right: 15px;
+  color:        #a8a8a8;
+  
+  &:hover {
+    color: #5c5c5c;
+    cursor: pointer;
+    transition: color ease-in-out .2s;
+  }
+}
+

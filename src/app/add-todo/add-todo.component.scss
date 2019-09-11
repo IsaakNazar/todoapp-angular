@@ -1,21 +1,41 @@
 #input_text {
-  padding: 10px;
-  font-size: 18px;
+  padding:       15px;
+  font-size:     18px;
+  border:        none;
+  outline:       none;
+  width:         70%;
+  border-radius: 5px;
 }
 
 .add_btn {
-  background: #15c731;
-  color: #ffffff;
-  padding: 10px 15px;
-  font-size: 20px;
-  border-radius: 10px;
-  margin-left: 20px;
-
-  span {
-    font-weight: bold;
-    background: black;
-    display: inline;
-    padding: 0 6px;
-    border-radius: 50px;
+  background:    #00A896;
+  color:         #ffffff;
+  outline:       none;
+  padding:       10px 15px;
+  font-size:     20px;
+  border:        2px solid #75d6cc;
+  border-radius: 5px;
+  margin-left:   10px;
+  
+  &:hover {
+    background: #008678;
+    cursor:     pointer;
+    transition: background ease-in .1s;
   }
+  
+  &:active {
+    background: #00645a;
+  }
+  
+}
+
+.add_btn_disabled {
+  background:    #00A896;
+  color:         #75d6cc;
+  outline:       none;
+  padding:       10px 15px;
+  font-size:     20px;
+  border:        2px solid #75d6cc;
+  border-radius: 5px;
+  margin-left:   10px;
 }

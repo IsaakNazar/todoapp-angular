@@ -1,11 +1,12 @@
-<form (ngSubmit)='onSubmit($event)' #f='ngForm'>
+<form (ngSubmit)="onSubmit($event)">
   <input
     type="text"
     id="input_text"
-    name='input_text'
-    ngModel
-    required>
+    name="input_text"
+    [(ngModel)]="inputText"
+    required
+    autocomplete="off">
   <button
-    class='add_btn'
-    type='submit'><span>+</span> ADD</button>
+    class="add_btn{{inputText ? '' : '_disabled'}}"
+    type="submit">ADD</button>
 </form>
