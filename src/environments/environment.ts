@@ -4,15 +4,7 @@
 
 export const environment = {
   production: false,
-  firebase:  {
-    apiKey: "AIzaSyAY2exGC8YkBE-tuSO2xcI2jRYsx8p_e3U",
-    authDomain: "todoapp-da8e9.firebaseapp.com",
-    databaseURL: "https://todoapp-da8e9.firebaseio.com",
-    projectId: "todoapp-da8e9",
-    storageBucket: "todoapp-da8e9.appspot.com",
-    messagingSenderId: "286998283733",
-    appId: "1:286998283733:web:e0c4793e23a5eaa2"
-  }
+  baseApi:  'http://localhost:3000/api/todos'
 };
 
 /*

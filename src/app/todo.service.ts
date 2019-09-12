@@ -1,8 +1,9 @@
-import {Subject, throwError} from 'rxjs';
+import {Subject} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {TodoModel} from './todo.model';
+import {environment} from '../environments/environment';
 
 @Injectable()
 export class TodoService {
@@ -15,7 +16,7 @@ export class TodoService {
 
   addTodoList(name: string) {
     const todos: TodoModel = {id: null, name: name, isCompleted: false};
-    this.http.post<{message: string, todoId: string}>('http://localhost:3000/api/todos', todos)
+    this.http.post<{message: string, todoId: string}>(environment.baseApi, todos)
       .subscribe(resp => {
         todos.id = resp.todoId;
         this.datas.push(todos);
@@ -25,7 +26,7 @@ export class TodoService {
   }
 
   getTodoList() {
-    this.http.get<{message: string, todos: any}>('http://localhost:3000/api/todos')
+    this.http.get<{message: string, todos: any}>(environment.baseApi)
       .pipe(
         map(todoData => {
           return todoData.todos.map(todos => {
@@ -47,7 +48,7 @@ export class TodoService {
   }
 
   deleteTodo(todoId) {
-    this.http.delete('http://localhost:3000/api/todos/' + todoId)
+    this.http.delete(`${environment.baseApi}/${todoId}`)
       .subscribe( () => {
         this.datas = this.datas.filter(post => post.id !== todoId);
         this.todoUpdated.next([...this.datas]);
