@@ -45,12 +45,23 @@ app.post('/api/todos', (req, res) => {
       .then(createdTodo => {
         res.status(201)
            .json({
-             message: 'Todo created successfully',
-             todoId:  createdTodo._id,
+             message:    'Todo created successfully',
+             todoId:     createdTodo._id,
              todoEntity: createdTodo
            })
       })
       .catch(res.status(500))
+});
+
+app.patch('/api/todos/:id', (request, response) => {
+  Todo.updateOne(
+    {_id: request.params.id},
+    {$set: {isCompleted: request.body.isCompleted}})
+      .then((result) => {
+        response.status(200)
+                .json({message: 'Updated successfully!', todoId: response.params})
+      })
+      .catch(response.status(500))
 });
 
 app.delete('/api/todos/:id', (req, res) => {

@@ -16,7 +16,7 @@ export class TodoService {
 
   addTodoList(name: string) {
     const todos: TodoModel = {id: null, name: name, isCompleted: false};
-    this.http.post<{message: string, todoId: string}>(environment.baseApi, todos)
+    this.http.post<{ message: string, todoId: string }>(environment.baseApi, todos)
       .subscribe(resp => {
         todos.id = resp.todoId;
         this.datas.push(todos);
@@ -26,13 +26,14 @@ export class TodoService {
   }
 
   getTodoList() {
-    this.http.get<{message: string, todos: any}>(environment.baseApi)
+    this.http.get<{ message: string, todos: any }>(environment.baseApi)
       .pipe(
         map(todoData => {
           return todoData.todos.map(todos => {
             return {
               id: todos._id,
-              name: todos.name
+              name: todos.name,
+              isCompleted: todos.isCompleted
             };
           });
         })
@@ -43,16 +44,31 @@ export class TodoService {
       });
   }
 
-  getPostUpdateListener() {
-    return this.todoUpdated;
+  updateTodo(todoId, isCompleted) {
+    this.http.patch(`${environment.baseApi}/${todoId}`, {isCompleted: isCompleted})
+      .subscribe(response => {
+        const updatedTodos = [...this.datas];
+        const newTodos = updatedTodos.map(todo => {
+          if (todo.id === todoId) {
+            todo.isCompleted = isCompleted;
+          }
+          return todo;
+        });
+        this.datas = newTodos;
+        this.todoUpdated.next([...this.datas]);
+      });
   }
 
   deleteTodo(todoId) {
     this.http.delete(`${environment.baseApi}/${todoId}`)
-      .subscribe( () => {
+      .subscribe(() => {
         this.datas = this.datas.filter(post => post.id !== todoId);
         this.todoUpdated.next([...this.datas]);
-        });
+      });
+  }
+
+  getPostUpdateListener() {
+    return this.todoUpdated;
   }
 
 }

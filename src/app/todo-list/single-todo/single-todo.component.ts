@@ -20,8 +20,9 @@ export class SingleTodoComponent implements OnInit {
     }
   }
 
-  toggleCheckbox(itemToToggle) {
-    console.log(itemToToggle);
+  toggleCheckbox(itemToToggle: string, isCompleted: boolean) {
+    this.todoService.updateTodo(itemToToggle, !isCompleted);
+    console.log(itemToToggle, isCompleted);
   }
 
 }

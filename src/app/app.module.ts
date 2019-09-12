@@ -11,11 +11,6 @@ import { PopupConfirmComponent } from './popup-confirm/popup-confirm.component';
 import {FormsModule} from '@angular/forms';
 import {TodoService} from './todo.service';
 import {HttpClientModule} from '@angular/common/http';
-import { environment } from '../environments/environment';
-import {AngularFireModule} from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import {AngularFireDatabase} from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -30,12 +25,9 @@ import {AngularFireDatabase} from '@angular/fire/database';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireStorageModule
+    HttpClientModule
   ],
-  providers: [TodoService, AngularFireDatabase],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
