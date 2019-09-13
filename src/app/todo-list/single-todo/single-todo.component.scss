@@ -37,13 +37,19 @@ li {
   color:        #a8a8a8;
   
   &:hover {
-    color: #5c5c5c;
-    cursor: pointer;
+    color:      #5c5c5c;
+    cursor:     pointer;
     transition: color ease-in-out .2s;
   }
   
   .fa-check-circle {
     color: #40c93b;
   }
+}
+
+.crossOut {
+  text-decoration: line-through;
+  font-style:      italic;
+  color:           #a8a8a8;
 }
 
