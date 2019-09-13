@@ -45,16 +45,17 @@ export class TodoService {
   }
 
   updateTodo(todoId, isCompleted) {
-    this.http.patch(`${environment.baseApi}/${todoId}`, {isCompleted: isCompleted})
-      .subscribe(response => {
+    this.http.patch(`${environment.baseApi}/${todoId}`, {isCompleted: !isCompleted})
+      .subscribe(() => {
         const updatedTodos = [...this.datas];
-        const newTodos = updatedTodos.map(todo => {
+
+        this.datas = updatedTodos.map(todo => {
           if (todo.id === todoId) {
-            todo.isCompleted = isCompleted;
+            todo.isCompleted = !isCompleted;
           }
           return todo;
         });
-        this.datas = newTodos;
+
         this.todoUpdated.next([...this.datas]);
       });
   }

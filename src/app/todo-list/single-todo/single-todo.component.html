@@ -1,1 +1,8 @@
-<li><span class="check_item" (click)="toggleCheckbox(todoItem.id, todoItem.isCompleted)"><i class="far fa-circle"></i></span>{{todoItem.name}} <span class="remove_item" (click)="removeTodo(todoItem.id)"><i class="fas fa-trash-alt"></i></span></li>
+<li>
+  <span class="check_item" (click)="toggleCheckbox(todoItem.id, todoItem.isCompleted)">
+    <i class="far {{todoItem.isCompleted ? 'fa-check-circle' : 'fa-circle'}}"></i>
+  </span>{{todoItem.name}}
+  <span class="remove_item" (click)="removeTodo(todoItem.id)">
+    <i class="fas fa-trash-alt"></i>
+  </span>
+</li>
